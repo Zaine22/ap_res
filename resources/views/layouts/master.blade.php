@@ -1,26 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section("content")
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session("status"))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -37,15 +14,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <title>AP RES Kitchen Panel | Starter</title>
         <link
             rel="stylesheet"
-            href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"
+            href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"
         >
         <link
             rel="stylesheet"
-            href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css"
+            href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"
         >
         <link
             rel="stylesheet"
-            href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css"
+            href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css"
             <!--
             Google
             Font:
@@ -61,12 +38,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Font Awesome Icons -->
         <link
             rel="stylesheet"
-            href="plugins/fontawesome-free/css/all.min.css"
+            href="/plugins/fontawesome-free/css/all.min.css"
         >
         <!-- Theme style -->
         <link
             rel="stylesheet"
-            href="dist/css/adminlte.min.css"
+            href="/dist/css/adminlte.min.css"
         >
     </head>
 
@@ -74,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="wrapper">
 
             <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            {{-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -141,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                 </ul>
-            </nav>
+            </nav> --}}
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
@@ -152,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     class="brand-link"
                 >
                     <img
-                        src="dist/img/AdminLTELogo.png"
+                        src="/dist/img/AdminLTELogo.png"
                         alt="AdminLTE Logo"
                         class="brand-image img-circle elevation-3"
                         style="opacity: .8"
@@ -166,7 +143,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                             <img
-                                src="dist/img/user2-160x160.jpg"
+                                src="/dist/img/user2-160x160.jpg"
                                 class="img-circle elevation-2"
                                 alt="User Image"
                             >
@@ -246,7 +223,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <footer class="main-footer">
                 <!-- To the right -->
                 <div class="float-right d-none d-sm-inline">
-                    Anything you want
+                    <form
+                        action="logout"
+                        method="POST"
+                    >
+                        @csrf
+                        <button class="btn btn-primary"type="submit">Logout</button>
+                    </form>
                 </div>
                 <!-- Default to the left -->
                 <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
@@ -258,24 +241,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- REQUIRED SCRIPTS -->
 
         <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.min.js"></script>
+        <script src="/dist/js/adminlte.min.js"></script>
 
-        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-        <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-        <script src="plugins/jszip/jszip.min.js"></script>
-        <script src="plugins/pdfmake/pdfmake.min.js"></script>
-        <script src="plugins/pdfmake/vfs_fonts.js"></script>
-        <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-        <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-        <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="/plugins/jszip/jszip.min.js"></script>
+        <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     </body>
 
 </html>

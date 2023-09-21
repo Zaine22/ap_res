@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class DishesController extends Controller
      */
     public function create()
     {
-        //
+        return view('kitchen.dish_create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -30,7 +33,16 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $formData = request()->validate([
+            'name' => ['required'],
+            'category_id' => ['required'],
+            'image' => ['required'],
+        ]);
+        $formData['image'] = request('image')->store('dishes_image');
+        Dish::create($formData);
+
+        return redirect('dish')->with('message', 'Dish created successfully');
     }
 
     /**
@@ -44,24 +56,36 @@ class DishesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Dish $dish)
     {
-        //
+        return view('kitchen.dish_edit', [
+            'dish' => $dish,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Dish $dish)
     {
-        //
+        $formData = request()->validate([
+            'name' => ['required'],
+            'category_id' => ['required'],
+        ]);
+        $formData['image'] = request('image') ? request('image')->store('dishes_image') : $dish->image;
+        $dish->update($formData);
+
+        return redirect('dish')->with('message', 'Dish updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+
+        return redirect('dish')->with('message', 'Dish remove successfully');
     }
 }
